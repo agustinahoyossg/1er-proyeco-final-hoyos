@@ -8,6 +8,7 @@
           <th scope="col">Fecha</th>
           <th scope="col">Precio</th>
           <th scope="col">Cantidad</th>
+          <th scope="col">Total</th>
           <th scope="col">Agregar/Eliminar</th>
         </tr>
       </thead>
@@ -17,6 +18,7 @@
           <td>{{producto.fecha}}</td>
           <td>{{producto.precio}}</td>
           <td>1</td>
+          <td>{{producto.precio }}</td>
           <td><button class="btn btn-success mr-2">+</button>
             <button class="btn btn-danger">-</button></td>
         </tr>
@@ -31,6 +33,10 @@ export default {
   props: {
     misProductos: Array,
 
+  }, data(){
+   return {
+    total: this.producto.precio
+   }
   }
 }
 </script>

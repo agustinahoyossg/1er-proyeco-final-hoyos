@@ -1,44 +1,43 @@
 <template>
-  <div class="m-3">
-    <div class="cards-container"> 
-      <div class="card" style="width: 18rem;" >
-        <img class="card-img-top card-img" :src=this.imagen alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ nombre }}</h5>
-          <p class="card-text">En {{ lugar }}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{ fecha }}</li>
-          <li class="list-group-item">Valor: £ {{ precio }}</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link btn btn-primary">Ver en mapa</a>
-          <a href="#" class="card-link btn btn-warning">Comprar</a>
-        </div>
-      </div>
-    </div>
+  <div class="cards-wrapper">
+    <ProductCard  v-for="(evento, index) of this.eventos" :key="index" :detalle="evento" :evento="evento.name" :precio="+evento.price" :imagen="evento.image" :fecha="evento.date" :lugar="evento.eventplace"   :descripcion="evento.description" :puertas="evento.doorsopenat" :localidades=+evento.availabletickets :capacidadtotal=+evento.capacity :id=+evento.id  />
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import ProductCard from './ProductCard.vue';
+
 export default {
   name: 'ProductList',
+  components: {
+    ProductCard
+  },
   props: {
-    nombre: String,
-    precio: Number,
-    imagen: String,
-    fecha: String,
-    lugar: String,
-
-  }
+    productos: Array
+  },
+  data() {
+    return {
+      eventos: []
+    }
+  },
+  created(){
+    const URLGET = "https://63a21bbcba35b96522f039e2.mockapi.io/londonevents/events"
+            axios.get(URLGET)
+            .then((response) => {
+              this.eventos = response.data
+            })
+           .catch((err) => {console.error(`${err}`)})
+        },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.card-img{
-  object-fit: cover; 
-  height: 250px;
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
+
+

@@ -4,20 +4,20 @@
     <div class="cards-container"> 
       <h3 class="text-left">Detalle del producto (modal)</h3>
       <div class="card d-flex flex-row text-white bg-dark" >
-        <img class="card-img-top card-img" :src=this.detalle.imagen alt="Card image cap">
+        <img class="card-img-top card-img" src="https://media.pitchfork.com/photos/6384d8132433cfb2d45c761a/4:3/w_2664,h_1998,c_limit/Metallica.jpg" alt="Card image cap">
         <div class="d-flex flex-column p-5">
           <div class="card-body">
             <h2 class="card-title">{{ detalle.nombre }}</h2>
-            <p class="card-text">En {{ detalle.lugar }}</p>
-            <p class="card-text">Capacidad total {{ detalle.capacidad }} / {{ detalle.disponibilidad }} entradas disponibles</p>
+            <p class="card-text">En {{ detalle.eventplace }}</p>
+            <p class="card-text">Capacidad total {{ detalle.capacity }} / {{ detalle.availabletikets }} entradas disponibles</p>
           </div>
           <ul class="list-group list-group-flush text-dark">
             <li class="list-group-item">Fecha: {{ detalle.fecha }}</li>
-            <li class="list-group-item">Apertura puertas: {{ detalle.apertura }}</li>
+            <li class="list-group-item">Apertura puertas: {{ detalle.doorsopenat }}</li>
             <li class="list-group-item">Valor: £ {{ detalle.precio }}</li>
           </ul>
           <div class="card-body">
-            <p>{{ detalle.descripcion }}</p>
+            <p>{{ detalle.description }}</p>
             <a href="#" class="card-link btn btn-primary">Ver en mapa</a>
             <a href="#" class="card-link btn btn-warning">Comprar</a>
           </div>
